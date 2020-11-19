@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject Player2Goal;
 
     [Header("ScoreUI")]
-    public GameObject Player1Text;
-    public GameObject Player2Text;
+    public TextMeshProUGUI Player1Text;
+    public TextMeshProUGUI Player2Text;
 
     private int Player1Score;
     private int Player2Score;
@@ -26,14 +26,14 @@ public class GameManager : MonoBehaviour
     public void Player1Scored()
     {
         Player1Score++;
-        Player1Text.GetComponent<TextMeshPro>().text = Player1Score.ToString();
+        Player1Text.text = Player1Score.ToString();
         ResetPosition();
     }
 
     public void Player2Scored()
     {
         Player2Score++;
-        Player2Text.GetComponent<TextMeshPro>().text = Player2Score.ToString();
+        Player2Text.text = Player2Score.ToString();
         ResetPosition();
     }
 
@@ -46,7 +46,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player1Score = 0;
+        Player2Score = 0;
+
+
     }
 
     // Update is called once per frame

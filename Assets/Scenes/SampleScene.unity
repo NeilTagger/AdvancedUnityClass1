@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 403591376}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -593,6 +593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rb: {fileID: 403591372}
+  startPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &504865541
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +890,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.6811867
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -954,6 +955,7 @@ MonoBehaviour:
   isPlayer1: 1
   speed: 5
   rb: {fileID: 818267550}
+  startPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &818267550
 Rigidbody2D:
   serializedVersion: 4
@@ -1211,6 +1213,7 @@ GameObject:
   - component: {fileID: 969683300}
   - component: {fileID: 969683299}
   - component: {fileID: 969683298}
+  - component: {fileID: 969683301}
   m_Layer: 0
   m_Name: Player1Goal
   m_TagString: Untagged
@@ -1309,6 +1312,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &969683301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969683297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024faa9ea3f1c0e429e99c3189bf4cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPlayer1Goal: 1
 --- !u!1 &1042481325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,8 +1359,8 @@ MonoBehaviour:
   Player1Goal: {fileID: 969683297}
   Player2Paddle: {fileID: 1773858012}
   Player2Goal: {fileID: 1285101099}
-  Player1Text: {fileID: 504865541}
-  Player2Text: {fileID: 913770423}
+  Player1Text: {fileID: 913770425}
+  Player2Text: {fileID: 504865543}
 --- !u!4 &1042481327
 Transform:
   m_ObjectHideFlags: 0
@@ -1370,6 +1386,7 @@ GameObject:
   - component: {fileID: 1285101102}
   - component: {fileID: 1285101101}
   - component: {fileID: 1285101100}
+  - component: {fileID: 1285101103}
   m_Layer: 0
   m_Name: Player2Goal
   m_TagString: Untagged
@@ -1468,6 +1485,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1285101103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285101099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024faa9ea3f1c0e429e99c3189bf4cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPlayer1Goal: 0
 --- !u!1 &1474608263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,6 +1599,7 @@ MonoBehaviour:
   isPlayer1: 0
   speed: 5
   rb: {fileID: 1773858014}
+  startPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &1773858014
 Rigidbody2D:
   serializedVersion: 4
