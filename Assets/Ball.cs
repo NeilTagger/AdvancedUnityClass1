@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Ball : MonoBehaviour
 {
     public float speed;
     public Rigidbody2D rb;
     public Vector3 startPosition;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
+        
         startPosition = transform.position;
         Launch();
     }
@@ -31,5 +34,19 @@ public class Ball : MonoBehaviour
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
         Launch();
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        audioSource.pitch = (Random.Range(0.8f, 1f));
+        if(transform.position.x > 0)
+        {
+            audioSource.panStereo = (1 - (transform.position.x/10));
+        }
+        if (transform.position.x < 0)
+        {
+            audioSource.panStereo = ( (transform.position.x / 10));
+        }
+
+        audioSource.PlayOneShot(audioSource.clip, 0.3f);
     }
 }
