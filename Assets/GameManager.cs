@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 
@@ -20,21 +21,22 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI Player1Text;
     public TextMeshProUGUI Player2Text;
 
-    private int Player1Score;
-    private int Player2Score;
+    GameScore gameScore;
 
     public void Player1Scored()
     {
-        Player1Score++;
-        Player1Text.text = Player1Score.ToString();
+        gameScore.Player1Score++;
+        Player1Text.text = gameScore.Player1Score.ToString();
         ResetPosition();
+        WriteScoreToJSon();
     }
 
     public void Player2Scored()
     {
-        Player2Score++;
-        Player2Text.text = Player2Score.ToString();
+        gameScore.Player2Score++;
+        Player2Text.text = gameScore.Player2Score.ToString();
         ResetPosition();
+        WriteScoreToJSon();
     }
 
     private void ResetPosition()
@@ -43,11 +45,13 @@ public class GameManager : MonoBehaviour
         Player1Paddle.GetComponent<Paddle>().Reset();
         Player2Paddle.GetComponent<Paddle>().Reset();
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        Player1Score = 0;
-        Player2Score = 0;
+        gameScore = new GameScore();
+        gameScore.Player1Score = 0;
+        gameScore.Player2Score = 0;
 
 
     }
@@ -56,5 +60,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void WriteScoreToJSon()
+    {
+        string json = JsonUtility.ToJson(gameScore);
+
+        using (StreamWriter file = File.CreateText(Directory.GetCurrentDirectory() + "\\Save.txt"))
+        {
+            file.Write(json);
+        }
     }
 }
