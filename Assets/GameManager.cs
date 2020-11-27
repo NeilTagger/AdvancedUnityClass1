@@ -49,10 +49,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         gameScore = new GameScore();
         gameScore.Player1Score = 0;
         gameScore.Player2Score = 0;
-
+        LoadScore();
 
     }
 
@@ -65,10 +66,24 @@ public class GameManager : MonoBehaviour
     public void WriteScoreToJSon()
     {
         string json = JsonUtility.ToJson(gameScore);
-
+        
         using (StreamWriter file = File.CreateText(Directory.GetCurrentDirectory() + "\\Save.txt"))
         {
             file.Write(json);
         }
+        
+        //File.WriteAllText(Directory.GetCurrentDirectory() + "\\Save.txt", json);
+    }
+
+    public void LoadScore()
+    {
+        if(File.Exists(Directory.GetCurrentDirectory() + "\\Save.txt"))
+        {
+            string saveString = File.ReadAllText(Directory.GetCurrentDirectory() + "\\Save.txt");
+            gameScore = JsonUtility.FromJson<GameScore>(saveString);
+            Player1Text.text = gameScore.Player1Score.ToString();
+            Player2Text.text = gameScore.Player2Score.ToString();
+        }
+        
     }
 }
